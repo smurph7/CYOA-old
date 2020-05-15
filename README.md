@@ -47,19 +47,3 @@ You will also need
 ```
 react-native run-android
 ```
-
-Troubleshooting
-```
-adb devices
-```
-If the above command lists nothing, then set your emulator with:
-```
-EMULATOR=emulator -list-avds
-emulator -avd $EMULATOR
-```
-Now you can run the application on your emulator:
-```
-react-native run-android
-```
-
-
