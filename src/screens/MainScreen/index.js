@@ -1,18 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styles from './styles';
 import Button from '../../components/Button';
+import TextArea from '../../components/TextArea';
 
 const MainScreen = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.textArea}>
-        <Text style={styles.text}>
-          The air is warm. A light breeze blows the dirt off the road before you
-          into small clouds, before settling back down again.
-        </Text>
-      </View>
-
+      <TextArea />
       <View style={styles.buttonContainer}>
         <View style={{ flexDirection: 'row' }}>
           <Button choice={'Button 1'} />
