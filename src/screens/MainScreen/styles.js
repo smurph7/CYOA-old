@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -7,9 +7,15 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
     alignItems: 'center',
+    paddingTop: 50,
+  },
+  textContainer: {},
+  touchableScreen: {
+    height: Dimensions.get('window').height,
   },
   buttonContainer: {
-    flex: 1,
+    paddingTop: 50,
+    alignItems: 'center',
   },
   padding: {
     padding: 20,

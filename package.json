@@ -30,10 +30,12 @@
   },
   "jest": {
     "preset": "react-native",
-       "setupFilesAfterEnv": ["jest-enzyme"],
-       "testEnvironment": "enzyme",
-       "testEnvironmentOptions": {
-           "enzymeAdapter": "react16"
-       }  
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    }
   }
 }

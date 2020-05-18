@@ -2,16 +2,15 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   textArea: {
-    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom: 25,
   },
   text: {
     color: 'white',
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: 'justify',
     paddingHorizontal: 50,
-    paddingTop: 100,
   },
 });
 
