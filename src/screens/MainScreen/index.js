@@ -3,6 +3,7 @@ import { View, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import styles from './styles';
 import Button from '../../components/Button';
 import TextArea from '../../components/TextArea';
+import * as Animatable from 'react-native-animatable';
 
 class MainScreen extends React.Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class MainScreen extends React.Component {
 
   displayParagraphs = (paragraphs) => {
     return paragraphs.map((item, index) => (
-      <TextArea key={index} text={item} />
+      <Animatable.View animation="fadeIn" easing="ease-in">
+        <TextArea key={index} text={item} />
+      </Animatable.View>
     ));
   };
 
@@ -70,9 +73,13 @@ class MainScreen extends React.Component {
               {shouldDisplayButtons ? (
                 <View style={styles.buttonContainer}>
                   <View style={{ flexDirection: 'row' }}>
-                    <Button choice={'Button 1'} />
+                    <Animatable.View animation="fadeIn" delay={700}>
+                      <Button choice={'Button 1'} />
+                    </Animatable.View>
                     <View style={styles.padding} />
-                    <Button choice={'Button 2'} />
+                    <Animatable.View animation="fadeIn" delay={700}>
+                      <Button choice={'Button 2'} />
+                    </Animatable.View>
                   </View>
                 </View>
               ) : null}
