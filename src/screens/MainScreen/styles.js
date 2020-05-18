@@ -7,9 +7,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 25,
   },
+  touchable: {
+    flex: 1,
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: 'center',
+  },
   buttonContainer: {
     alignItems: 'center',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   padding: {
     padding: 20,

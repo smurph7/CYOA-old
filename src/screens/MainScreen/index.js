@@ -10,7 +10,7 @@ class MainScreen extends React.Component {
     super(props);
     this.state = { paragraphNumber: 0 };
   }
-  //add fade in with delay to buttons in shoulddisplaybuttons
+
   //change touchable opacity to without feedback and customise feedback
 
   getParagraphs = (text) => {
@@ -19,7 +19,11 @@ class MainScreen extends React.Component {
 
   displayParagraphs = (paragraphs) => {
     return paragraphs.map((item, index) => (
-      <Animatable.View animation="fadeIn" easing="ease-in">
+      <Animatable.View
+        key={index}
+        animation="fadeIn"
+        easing="ease-in"
+        duration={1500}>
         <TextArea key={index} text={item} />
       </Animatable.View>
     ));
@@ -60,24 +64,31 @@ class MainScreen extends React.Component {
             contentContainerStyle={{
               flexGrow: 1,
               flexDirection: 'column',
-              justifyContent: 'space-around',
+              justifyContent: 'center',
             }}>
             <TouchableOpacity
+              style={styles.touchable}
               onPress={() => {
                 this.increaseParagraphNumber(paragraphs);
               }}>
-              <View>
+              <View style={styles.textContainer}>
                 {this.displayParagraphs(this.sliceParagraphs(paragraphs))}
               </View>
               <View style={styles.padding}></View>
               {shouldDisplayButtons ? (
                 <View style={styles.buttonContainer}>
                   <View style={{ flexDirection: 'row' }}>
-                    <Animatable.View animation="fadeIn" delay={700}>
+                    <Animatable.View
+                      animation="fadeIn"
+                      delay={1500}
+                      duration={1500}>
                       <Button choice={'Button 1'} />
                     </Animatable.View>
                     <View style={styles.padding} />
-                    <Animatable.View animation="fadeIn" delay={700}>
+                    <Animatable.View
+                      animation="fadeIn"
+                      delay={1500}
+                      duration={1500}>
                       <Button choice={'Button 2'} />
                     </Animatable.View>
                   </View>
