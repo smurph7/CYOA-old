@@ -36,6 +36,7 @@ describe('Main screen', () => {
   });
 
   it('should not increase paragraph number if equal to paragraph array length', () => {
+    instance.paragraphs = paragraphs;
     instance.setState({ paragraphNumber: 1 });
     jest.spyOn(instance, 'setState');
     instance.increaseParagraphNumber(paragraphs);
@@ -49,5 +50,31 @@ describe('Main screen', () => {
   it('should display buttons if paragraph length equal to paragraph number + 1', () => {
     instance.setState({ paragraphNumber: 1 });
     expect(instance.shouldDisplayButtons(paragraphs)).toBeTruthy();
+  });
+
+  it('should display next story segment on button press', () => {
+    const storySegment = {
+      id: '0',
+      text: 'story text goes here',
+      choices: ['choice1', 'choice2'],
+      result: ['1a', '1b'],
+    };
+    instance.storySegment = storySegment;
+    const choice = 0;
+    jest.spyOn(instance, 'forceUpdate');
+    jest.spyOn(instance, 'increaseParagraphNumber');
+    jest.spyOn(instance, 'getNextSegmentById');
+    jest.spyOn(instance, 'getParagraphs');
+    instance.updateStorySegment(choice);
+    expect(instance.forceUpdate).toHaveBeenCalled();
+    expect(instance.increaseParagraphNumber).toHaveBeenCalled();
+    expect(instance.getNextSegmentById).toHaveBeenCalledWith('1a');
+    expect(instance.getParagraphs).toHaveBeenCalled();
+  });
+
+  it('should filter story segments by given id', () => {
+      const id = "1b";
+      const nextSegment = instance.getNextSegmentById(id);
+      expect(nextSegment.id).toEqual(id);
   });
 });
