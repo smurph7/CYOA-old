@@ -7,6 +7,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 25,
   },
+  scrollView: {
+    flexGrow: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
   touchable: {
     flex: 1,
   },
@@ -15,11 +20,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    margin: 10,
+  },
+  flex: {
+    flex: 1,
   },
   padding: {
-    padding: 20,
+    padding: 10,
   },
 });
 

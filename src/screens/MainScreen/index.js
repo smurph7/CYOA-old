@@ -3,12 +3,13 @@ import { View, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import styles from './styles';
 import Button from '../../components/Button';
 import TextArea from '../../components/TextArea';
+import Story from '../../assets/story.json';
 import * as Animatable from 'react-native-animatable';
 
 class MainScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { paragraphNumber: 0 };
+    this.state = { paragraphNumber: 0, segmentId: 0 };
   }
 
   //change touchable opacity to without feedback and customise feedback
@@ -47,13 +48,15 @@ class MainScreen extends React.Component {
   };
 
   render() {
-    const text = `The air is warm. A light breeze blows the dirt off the road before you into small clouds, before settling back down again.\nYou sit upon the bench of your wagon, its flat wood aged and weathered. You hold the reins tight in your hands, but the horses already seem to know the route back to the city.\nYou are relaxed, listening to the birds chirping as you steer your wagon down the road. Your sword lays idly in the seat next to you.\nYou hear a sound, the cracking of twigs and rustling of leaves. Two men emerge from the trees surrounding the road, swords brandished. Your horse whinnies and comes to a stop. The men slowly approach either side of the vehicle, and the larger of the two yells “Give us your wagon and we’ll let you live”.`;
+    const { segmentId } = this.state;
+    const storySegment = Story[parseInt(segmentId)];
+    const text = storySegment.text;
     const paragraphs = this.getParagraphs(text);
     const shouldDisplayButtons = this.shouldDisplayButtons(paragraphs);
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.flex}>
         <View style={styles.container}>
-          <View style={{ padding: 10 }} />
+          <View style={styles.padding} />
           <ScrollView
             ref={(ref) => {
               this.scrollView = ref;
@@ -61,11 +64,7 @@ class MainScreen extends React.Component {
             onContentSizeChange={() =>
               this.scrollView.scrollToEnd({ animated: true })
             }
-            contentContainerStyle={{
-              flexGrow: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-            }}>
+            contentContainerStyle={styles.scrollView}>
             <TouchableOpacity
               style={styles.touchable}
               onPress={() => {
@@ -77,24 +76,30 @@ class MainScreen extends React.Component {
               <View style={styles.padding}></View>
               {shouldDisplayButtons ? (
                 <View style={styles.buttonContainer}>
-                  <View style={{ flexDirection: 'row' }}>
-                    <Animatable.View
-                      animation="fadeIn"
-                      delay={1500}
-                      duration={1500}>
-                      <Button choice={'Button 1'} />
-                    </Animatable.View>
-                    <View style={styles.padding} />
-                    <Animatable.View
-                      animation="fadeIn"
-                      delay={1500}
-                      duration={1500}>
-                      <Button choice={'Button 2'} />
-                    </Animatable.View>
-                  </View>
+                  <Animatable.View
+                    style={styles.flex}
+                    animation="fadeIn"
+                    delay={1500}
+                    duration={1500}>
+                    <Button
+                      choice={storySegment.choices[0]}
+                      onPress={() => console.log(storySegment.result[0])}
+                    />
+                  </Animatable.View>
+                  <View style={styles.padding} />
+                  <Animatable.View
+                    style={styles.flex}
+                    animation="fadeIn"
+                    delay={1500}
+                    duration={1500}>
+                    <Button
+                      choice={storySegment.choices[1]}
+                      onPress={() => console.log(storySegment.result[1])}
+                    />
+                  </Animatable.View>
                 </View>
               ) : null}
-              <View style={styles.padding} />
+              <View style={{ padding: 15 }} />
             </TouchableOpacity>
           </ScrollView>
         </View>

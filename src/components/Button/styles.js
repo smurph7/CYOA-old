@@ -1,9 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-  },
   button: {
     borderWidth: 1,
     borderColor: 'white',
@@ -13,6 +10,7 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 20,
+    textAlign: 'center',
   },
 });
 
